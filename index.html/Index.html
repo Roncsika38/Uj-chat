@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Új Chat</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #080b13;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background: #111827;
+      border-bottom: 3px solid #f21d3d;
+      padding: 18px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    header span { color: #f21d3d; }
+    main {
+      width: min(600px, 94%);
+      margin: 35px auto;
+      background: #111827;
+      border: 1px solid #30394b;
+      border-radius: 15px;
+      padding: 20px;
+    }
+    h2 { margin-top: 0; }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      margin: 7px 0;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    input {
+      background: #080b13;
+      border: 1px solid #39445a;
+      color: white;
+    }
+    button {
+      border: 0;
+      background: #f21d3d;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button.secondary { background: #30394b; }
+    #chat { display: none; }
+    #messages {
+      height: 300px;
+      overflow-y: auto;
+      background: #080b13;
+      padding: 12px;
+      border-radius: 9px;
+      overflow-wrap: anywhere;
+    }
+    .message {
+      padding: 9px;
+      margin: 8px 0;
+      background: #202b3d;
+      border-radius: 8px;
+    }
+    .note { color: #aab5c8; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>🔴 Új <span>Chat</span></header>
+
+  <main id="login">
+    <h2>Belépés / Regisztráció</h2>
+    <input id="email" type="email" placeholder="E-mail-cím" autocomplete="email">
+    <input id="password" type="password" placeholder="Jelszó (legalább 6 karakter)" autocomplete="current-password">
+    <button onclick="alert('A regisztráció és belépés beállítása a következő lépésben következik.')">Belépés</button>
+    <button class="secondary" onclick="alert('A regisztrációt a háttérrendszer beállítása után kapcsoljuk be.')">Regisztráció</button>
+    <p class="note">A valódi belépéshez még csatlakoztatni kell a biztonságos háttérrendszert.</p>
+  </main>
+
+  <main id="chat">
+    <h2>Chatszoba: Általános</h2>
+    <div id="messages"></div>
+    <input id="message" placeholder="Írd ide az üzeneted...">
+    <button onclick="sendMessage()">Küldés</button>
+    <button class="secondary" onclick="alert('A szobakezelés és adminpanel beállítása később következik.')">Szobák / Admin</button>
+  </main>
+
+  <script>
+    function sendMessage() {
+      const field = document.getElementById('message');
+      const value = field.value.trim();
+      if (!value) return;
+      const item = document.createElement('div');
+      item.className = 'message';
+      item.textContent = value;
+      document.getElementById('messages').appendChild(item);
+      field.value = '';
+    }
+  </script>
+</body>
+</html>
